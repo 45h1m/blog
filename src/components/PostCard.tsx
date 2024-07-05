@@ -30,7 +30,7 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
             <div className="p-3 flex justify-between items-center">
                 <div className="left flex gap-3 items-center">
                     <Avatar>
-                        <AvatarImage src={dp} />
+                        <AvatarImage src={dp} alt={"author-"+ author +"-profile-image"}/>
                         <AvatarFallback>{author.slice(0,2)}</AvatarFallback>
                     </Avatar>
 
@@ -47,7 +47,7 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
 
                 <div className="right grid">
                     <DropdownMenu>
-                        <DropdownMenuTrigger>
+                        <DropdownMenuTrigger aria-label="option-menu">
                             <EllipsisVertical />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
@@ -60,14 +60,15 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
             </div>
             <div className="lg:grid grid-cols-2">
                 <div className="focus-content p-4 pt-0">
-                    <h1 className="text-2xl font-bold py-2">{title}</h1>
+                <Link className="no-underline" href={"blog/" + slug} title={title}>
+                    <h1 className="text-slate-800 dark:text-slate-200 text-2xl font-bold py-2 hover:no-underline">{title}</h1>
                     <p className="text-slate-700 dark:text-slate-300 line-clamp-4 py-1">{description} </p>
-                    <Link className="" href={"blog/" + slug}>
                         read more
-                    </Link>
+                </Link>
                 </div>
                 <div className="lg:pr-4 lg:pb-4 rounded-lg overflow-hidden">
                     <Link href={"blog/" + slug} className=" w-full h-full flex relative items-end">
+                        
                         <Image
                             width={300}
                             height={200}
@@ -75,9 +76,9 @@ const PostCard = ({ slug, title, description, date, author, thumbnail, dp, tags 
                             alt="post-thumbnail"
                             className="object-cover w-full h-full lg:max-h-full rounded-lg aspect-video"
                         />
-                        <div className="absolute flex flex-wrap-reverse gap-2 bg-gradient-to-t rounded-lg from-black/20 to-transparent p-2">
+                        <div className="absolute flex flex-wrap-reverse gap-2 bg-gradient-to-t rounded-lg dark:from-slate-500/20 from-black/20 to-transparent p-2">
                             {tags.map((tag) => (
-                                <span key={tag} className="bg-white/80 dark:bg-black/50 text-black dark:text-slate-100 px-2 rounded-sm backdrop-blur-sm">
+                                <span key={tag} className="text-sm bg-white/90 dark:bg-black/60 text-black dark:text-slate-100 px-2 rounded-sm">
                                     {tag}
                                 </span>
                             ))}

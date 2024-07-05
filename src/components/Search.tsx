@@ -41,7 +41,7 @@ export default function Search() {
             .then((res) => res.json())
             .then((data) => {
                 setBlogs(data);
-                console.log(data);
+
             });
 
         return () => document.removeEventListener("keydown", down);
@@ -61,12 +61,12 @@ export default function Search() {
             <CommandDialog open={open} onOpenChange={setOpen} aria-describedby={"search-bar"}>
                 <DialogTitle className="p-4 font-bold text-slate-400">Flamer</DialogTitle>
                 <CommandInput placeholder="search..." />
-                <CommandList>
+                <CommandList aria-describedby="list-of-all-blogs-and-projects">
                     <CommandEmpty>No results found.</CommandEmpty>
-                    <CommandGroup>
+                    <CommandGroup aria-describedby="list-of-all-blogs">
                         {blogs.map((b) => (
                             <Link key={b.realSlug} onClick={() => setOpen(false)} className="cursor-pointer" href={"/blog/" + b.realSlug}>
-                                <CommandItem key={b.realSlug}>
+                                <CommandItem key={b.realSlug} aria-describedby={b.title}>
                                     <span>{b.title}</span>
                                     <span className="hidden">{b.tags.toString()}</span>
                                 </CommandItem>

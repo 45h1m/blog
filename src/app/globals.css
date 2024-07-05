@@ -91,8 +91,12 @@ html *::-webkit-scrollbar-thumb {
 }
 
 .blog-container a {
-    text-decoration: underline;
+    
     color: rgb(20, 161, 237) !important;
+}
+.blog-container a:hover {
+    
+    text-decoration: underline;
 }
 
 .blog-container > h1 > span {
