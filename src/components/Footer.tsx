@@ -8,7 +8,7 @@ const Footer = () => {
     const { toast } = useToast();
 
     return (
-        <footer className="w-full pt-20 bg-white">
+        <footer className="w-full pt-20">
             <div className="mx-auto flex max-w-6xl flex-col items-start space-x-8 md:flex-row">
                 <div className="w-full px-4 md:w-1/2 lg:px-0">
                     <h1 className="max-w-sm text-3xl font-bold">Subscribe to our Newsletter</h1>
