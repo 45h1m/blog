@@ -1,20 +1,15 @@
-import fs from 'fs'
 import path from 'path';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import CopyToClip from './CopyToClip';
-import remarkGfm from 'remark-gfm';
-import { compile } from '@mdx-js/mdx';
 
 const contentRootDir = path.join(process.cwd(), '/', 'content/blog');
 
-export async function getBlogBySlug(slug:string) {
-  const realSlug = slug.replace(/\.mdx$/, '');
-  const filePath = path.join(contentRootDir, `${realSlug}.mdx`);
-  const fileContent = fs.readFileSync(filePath, 'utf8')
-
-  const { frontmatter, content } = await compileMDX({
-    source: fileContent,
-    options: { parseFrontmatter: true },
+export async function compileContent(md:string) {
+  const { content } = await compileMDX({
+    source: md,
+    options : {
+      parseFrontmatter: true
+    },
     components: {
     h1: ({ children }) => <h1 className='text-3xl font-bold relative'>{children}</h1>,
     h2: ({ children }) => <h2 className='text-2xl font-bold '>{children}</h2>,
@@ -37,21 +32,5 @@ export async function getBlogBySlug(slug:string) {
     }
   });
 
-  return { meta: {...frontmatter, realSlug}, content };
-}
-
-export async function getAllBlogMeta() {
-
-  const files = fs.readdirSync(contentRootDir);
-  const mdxSlugs = files.filter(file => file.endsWith('.mdx'));
-
-  const blogs = [];
-
-  for(const slug of mdxSlugs) {
-
-    const { meta } = await getBlogBySlug(slug);
-    blogs.push(meta);
-  }
-
-  return blogs;
+  return content;
 }

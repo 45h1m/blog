@@ -1,12 +1,11 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { getBlogs } from "@/_actions/blogActions";
 import PostCardSmall from "@/components/PostCardSmall";
-import { getAllBlogMeta, getBlogBySlug } from "@/components/functions";
 
 
 const AsideLeft = async () => {
-    let _blogs = await getAllBlogMeta();
+    let {blogs} = await getBlogs();
 
-    const projects = _blogs.filter(blog => {
+    const projects = blogs.filter(blog => {
         let project = false;
         blog.tags.map(tag => { 
             if (tag.toLowerCase() === 'project') return project = true;

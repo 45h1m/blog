@@ -1,29 +1,29 @@
-import { getAllBlogMeta, getBlogBySlug } from "@/components/functions";
+import { getBlogs } from "@/_actions/blogActions";
 import PostCard from "@/components/PostCard";
 
 const page = async () => {
-    const blogs:any = await getAllBlogMeta();
+    const {blogs } = await getBlogs();
 
     return (
-        <article className="blog-container flex flex-col gap-4 p-2 prose">
+        <div className="blog-container flex flex-col gap-4 p-2 prose">
             {
-                <ul className="flex flex-col gap-4 pt-4">
-                    {blogs.map((blog:any) => (
-                        <li className="" key={blog.realSlug}>
+                <div className="flex flex-col gap-4 pt-4">
+                    {blogs?.map((blog:any, index) => (
+                        <article className="" key={blog.slug}>
                             <PostCard 
                             title={blog.title} 
                             description={blog.description} 
-                            slug={blog.realSlug} 
-                            date={blog.date} 
+                            slug={blog.slug} 
+                            date={blog.createdAt.toString().split("GMT")[0]} 
                             author={blog.author} 
-                            dp={blog.dp}
+                            dp={blog.authorDP}
                             thumbnail={blog.thumbnail}
                             tags={blog.tags}/>
-                        </li>
+                        </article>
                     ))}
-                </ul>
+                </div>
             }
-        </article>
+        </div>
     );
 };
 

@@ -1,17 +1,17 @@
+import { getBlogs } from '@/_actions/blogActions';
 import { NextResponse } from 'next/server'
-import { getAllBlogMeta } from "@/components/functions";
 
 type BlogMeta = {
   title: string;
-  realSlug: string;
+  slug: string;
   tags: string[];
 };
 
 export async function GET() {
-  const blogs: any = await getAllBlogMeta();
+  const {blogs}: any = await getBlogs();
   const resp = blogs.map((b: BlogMeta) => ({
     title: b.title,
-    realSlug: b.realSlug,
+    realSlug: b.slug,
     tags: b.tags
   }));
 
