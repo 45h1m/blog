@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { MoveUpRight } from "lucide-react";
-import { getBlogs } from "@/_actions/blogActions";
 
 export default async function Home() {
     

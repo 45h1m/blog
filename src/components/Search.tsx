@@ -1,8 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { CalendarIcon, EnvelopeClosedIcon, FaceIcon, GearIcon, PersonIcon, RocketIcon } from "@radix-ui/react-icons";
-import { getAllBlogMeta, getBlogBySlug } from "@/components/functions";
 import {
     CommandDialog,
     CommandEmpty,

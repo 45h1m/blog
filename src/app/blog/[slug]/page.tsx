@@ -2,7 +2,6 @@ import { compileContent } from "@/components/functions";
 import { notFound } from "next/navigation";
 import { Metadata } from 'next';
 import { getBlog, getBlogs } from "@/_actions/blogActions";
-import BlogModel from "@/schemas/Schema";
 
 export async function generateMetadata(props:any): Promise<Metadata> {
 

@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { EllipsisVertical, Heart, MessageSquareText, MoveUpRight, Pin, Share2 } from "lucide-react";
+import { EllipsisVertical } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
